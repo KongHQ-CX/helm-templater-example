@@ -1,0 +1,7 @@
+konnect-certificates/*.crt
+konnect-certificates/*.cer
+konnect-certificates/*.pem
+konnect-certificates/*.key
+workdir/*.yaml
+workdir/*.pem
+workdir/*.pem
