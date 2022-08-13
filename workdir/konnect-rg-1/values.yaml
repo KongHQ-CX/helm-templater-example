@@ -1,0 +1,57 @@
+
+secretsProviderClass:
+  enabled: true
+  secretPath: secrets/api/production
+  vaultAddress: https://vault.vault.svc.cluster.local
+
+kong:
+  enabled: true
+
+  image:
+    repository: kong/kong-gateway
+    tag: 2.8.1.3-rhel7
+
+  env:
+    database: "off"
+
+    lua_ssl_trusted_certificate: /etc/secrets/konnect-certificate/tls.crt,system
+
+    ssl_cert: /etc/secrets/kong-proxy-certificate/tls.crt
+    ssl_cert_key: /etc/secrets/kong-proxy-certificate/tls.key
+
+    role: data_plane
+    cluster_mtls: pki
+    cluster_control_plane: 1315ce7884.us.cp0.konghq.com:443
+    cluster_server_name: 1315ce7884.us.cp0.konghq.com
+    cluster_telemetry_endpoint: 1315ce7884.us.tp0.konghq.com:443
+    cluster_telemetry_server_name: 1315ce7884.us.tp0.konghq.com
+    cluster_cert: /etc/secrets/kong-cluster-cert-tysoe-1/tls.crt
+    cluster_cert_key: /etc/secrets/kong-cluster-cert-tysoe-1/tls.key
+
+  secretVolumes:
+  - konnect-certificate
+  - kong-proxy-certificate
+
+  proxy:
+    enabled: true
+    type: ClusterIP
+    http:
+      enabled: false
+      servicePort: 8000
+      containerPort: 8000
+    tls:
+      enabled: true
+      containerPort: 8443
+      servicePort: 8443
+      parameters:
+      - http2
+    ingress:
+      enabled: true
+      hostname: kong.k3s.local
+
+  postgresql:
+    enabled: false
+
+  ingressController:
+    enabled: false
+    installCRDs: false

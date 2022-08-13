@@ -2,6 +2,10 @@ konnect-certificates/*.crt
 konnect-certificates/*.cer
 konnect-certificates/*.pem
 konnect-certificates/*.key
+proxy-certificates/*.crt
+proxy-certificates/*.cer
+proxy-certificates/*.pem
+proxy-certificates/*.key
 workdir/*.yaml
 workdir/*.pem
 workdir/*.pem

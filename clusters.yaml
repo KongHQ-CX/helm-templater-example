@@ -1,28 +1,32 @@
-globalVariables:
-  imageTag: "2.8.1.3-rhel7"
-
 clusters:
   - alias: "konnect-rg-1"
     namespace: "konnect-rg-1"
     kubeContext: "azure-eu"
     konnectCertificateFiles:
-      cert: konnect-certificates/konnect-rg-1.pem
-      key: konnect-certificates/konnect-rg-1.key
+      cert: "konnect-certificates/konnect-rg-1.pem"
+      key: "konnect-certificates/konnect-rg-1.key"
     proxyCertificateFiles:
-      cert: proxy-certificates/konnect-rg-1-proxy.pem
-      key: proxy-certificates/konnect-rg-1-proxy.key
+      cert: "proxy-certificates/konnect-rg-1-proxy.pem"
+      key: "proxy-certificates/konnect-rg-1-proxy.key"
     variables:
-      imageTag: "2.8.1.3-ubuntu"  # this will override the 'globalVariables' entry of the same key
-      ingressURL: "kong.k3s.local"
+      imageTag: "2.8.1.3-rhel7"
+      ingressDomain: "kong.k3s.local"
+      secretsProviderClass:
+        enabled: true
+        vaultAddress: "https://vault.vault.svc.cluster.local"
+        secretPath: "secrets/api/production"
 
   - alias: "konnect-rg-2"
     namespace: "konnect-rg-2"
     kubeContext: "azure-us"
-      konnectCertificateFiles:
-      cert: konnect-certificates/konnect-rg-2.pem
-      key: konnect-certificates/konnect-rg-2.key
+    konnectCertificateFiles:
+      cert: "konnect-certificates/konnect-rg-2.pem"
+      key: "konnect-certificates/konnect-rg-2.key"
     proxyCertificateFiles:
-      cert: proxy-certificates/konnect-rg-2-proxy.pem
-      key: proxy-certificates/konnect-rg-2-proxy.key
+      cert: "proxy-certificates/konnect-rg-2-proxy.pem"
+      key: "proxy-certificates/konnect-rg-2-proxy.key"
     variables:
-      ingressURL: "kong.azure-us.local"
+      imageTag: "2.8.1.3-ubuntu"
+      ingressDomain: "kong.azure-us.local"
+      secretsProviderClass:
+        enabled: false

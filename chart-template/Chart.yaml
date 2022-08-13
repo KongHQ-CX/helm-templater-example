@@ -11,5 +11,5 @@ version: 1.0.0
 appVersion: "2.8"
 dependencies:
 - name: kong
-  version: 2.9.1
+  version: 2.9.1  # keep this in line with the latest tag at https://github.com/Kong/charts
   repository: https://charts.konghq.com

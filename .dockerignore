@@ -1,0 +1,4 @@
+konnect-certificates/
+proxy-certificates/
+workdir/
+*.yaml
