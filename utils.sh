@@ -3,6 +3,10 @@
 installKongs() {
     CWD=$(pwd)
 
+    # Copy passed-in Kubeconfig
+    mkdir -p ~/.kube
+    cp /mnt/kube/config ~/.kube/config
+
     # Render all tempates
     /usr/local/bin/kongtemplater
 

@@ -1,4 +1,8 @@
 konnect-certificates/
 proxy-certificates/
 workdir/
+.git/
+.vscode/
 *.yaml
+*.md
+Makefile
