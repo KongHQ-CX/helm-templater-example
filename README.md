@@ -32,6 +32,7 @@ In here, you can add conditional logic to the `values.yaml.tpl` and `install-kon
 After completing the `values.yaml.tpl`, `install-kong.sh.tpl`, and `clusters.yaml` files to your requirements, you can run the process with:
 
 > ⚠️ WARNING: By default, this process mounts your local kubeconfig from ~/.kube/config - it is safer to generate a short-lived kubeconfig for the current required cluster, at the local directory, using your cloud provider's CLI.
+> The usual mechanism is to store a kubeconfig for all required cluster, with empty authentication, and get your temporary Kube API credentials from the CI server at pipeline run time.
 
 ```sh
 make install-kongs KUBECONFIG_FILE=./kube.config  # KUBECONFIG_FILE is an optional argument
